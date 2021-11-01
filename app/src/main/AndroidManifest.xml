@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.jac.jacfilter">
 
+    <!-- Keep service running in foreground. -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <!-- Add and manager overlay over the whole screen. -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -18,6 +23,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service android:name=".filter.FilterService"/>
     </application>
 
 </manifest>

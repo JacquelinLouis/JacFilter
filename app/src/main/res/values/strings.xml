@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">JacFilter</string>
+    <string name="opacity_selection">Choose the opacity:</string>
+    <string name="enable_opacity_text">Enable opacity</string>
+    <string name="notification_title">JacFilter</string>
+    <string name="notification_message">Filter is running</string>
+    <string name="permission_denial_text">Please, allow the application to create an overlay</string>
 </resources>
