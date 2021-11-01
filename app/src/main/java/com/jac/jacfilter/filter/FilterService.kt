@@ -67,9 +67,11 @@ class FilterService: Service() {
     /** Set window opacity. */
     var opacity: Float get() = preferencesManager.opacity
         set(value) {
-            windowOverlay?.run {
-                viewOverlay.alpha = value
-                windowManager.updateViewLayout(viewOverlay, viewOverlayParams)
+            if (enabled) {
+                windowOverlay?.run {
+                    viewOverlay.alpha = value
+                    windowManager.updateViewLayout(viewOverlay, viewOverlayParams)
+                }
             }
             preferencesManager.opacity = value
             listeners.forEach(Listener::onOpacityChanged)
