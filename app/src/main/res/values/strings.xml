@@ -5,4 +5,11 @@
     <string name="notification_title">JacFilter</string>
     <string name="notification_message">Filter is running</string>
     <string name="permission_denial_text">Please, allow the application to create an overlay</string>
+    <string name="request_permission_title_text">Permission request</string>
+    <string name="request_permission_content_text">
+        This application create a overlay over the whole device\'s screen and allow to reduce it\'s
+        luminosity.\n
+        To do so you must allow this application to create this overlay in permissions.
+    </string>
+    <string name="request_permission_button_text">Request permission</string>
 </resources>

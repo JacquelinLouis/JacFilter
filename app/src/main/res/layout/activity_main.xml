@@ -15,41 +15,14 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/opacity_selection_text_view"
-        android:layout_width="wrap_content"
+    
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/main_activity_fragment_container"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/opacity_selection"
-        android:layout_marginVertical="@dimen/main_margin"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/app_name_text_view" />
-
-    <TextView
-        android:id="@+id/opacity_value_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="@dimen/main_margin"
-        app:layout_constraintLeft_toRightOf="@id/opacity_selection_text_view"
         app:layout_constraintTop_toBottomOf="@id/app_name_text_view"
-        tools:text="60" />
-
-    <SeekBar
-        android:id="@+id/opacity_selection_seek_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="@dimen/main_margin"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/opacity_selection_text_view" />
-
-    <ToggleButton
-        android:id="@+id/enable_opacity"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/enable_opacity_text"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/opacity_selection_seek_bar" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

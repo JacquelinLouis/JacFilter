@@ -3,5 +3,5 @@
     <!-- Default opacity activation, mainly for test purpose. -->
     <bool name="default_opacity_activation">true</bool>
     <!-- Default screen opacity. -->
-    <integer name="default_opacity">0</integer>
+    <integer name="default_opacity">50</integer>
 </resources>

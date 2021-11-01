@@ -52,7 +52,8 @@ class FilterViewModel(application: Application) : AndroidViewModel(application) 
         override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
             filterService = (service as FilterService.LocalBinder).getService().also {
                 it.register(filterServiceListener)
-                it.enabled = application.resources.getBoolean(R.bool.default_opacity_activation)
+                setEnabled(application.resources.getBoolean(R.bool.default_opacity_activation))
+                setOpacity(application.resources.getInteger(R.integer.default_opacity))
             }
         }
 
@@ -65,10 +66,8 @@ class FilterViewModel(application: Application) : AndroidViewModel(application) 
     }
 
     init {
-        if (ContextCompat.checkSelfPermission(getApplication(), Manifest.permission.SYSTEM_ALERT_WINDOW) == PackageManager.PERMISSION_GRANTED) {
-            application.bindService(Intent(application, FilterService::class.java),
-                filterServiceConnection, Context.BIND_AUTO_CREATE)
-        }
+        application.bindService(Intent(application, FilterService::class.java),
+            filterServiceConnection, Context.BIND_AUTO_CREATE)
     }
 
     /**
@@ -81,7 +80,7 @@ class FilterViewModel(application: Application) : AndroidViewModel(application) 
      * Set filter's opacity.
      * @param value the opacity value to apply.
      */
-    fun setOpacity(value: Int) { (value / OPACITY_FACTOR).toFloat() }
+    fun setOpacity(value: Int) { filterService?.opacity = (value / OPACITY_FACTOR).toFloat() }
 
     override fun onCleared() {
         getApplication<Application>().unbindService(filterServiceConnection)
