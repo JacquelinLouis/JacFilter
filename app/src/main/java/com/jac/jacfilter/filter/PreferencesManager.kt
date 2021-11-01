@@ -25,6 +25,6 @@ class PreferencesManager(context: Context) {
     private val defaultOpacity = context.resources.getInteger(R.integer.default_opacity)
 
     /** Opacity value. */
-    var opacity: Float get() = sharedPreferences.getFloat(WINDOW_OPACITY, defaultOpacity.toFloat() / OPACITY_FACTOR)
-        set(value) = sharedPreferences.edit().putInt(WINDOW_OPACITY, (value * OPACITY_FACTOR).toInt()).apply()
+    var opacity: Float get() = sharedPreferences.getFloat(WINDOW_OPACITY, defaultOpacity.toFloat()) / OPACITY_FACTOR
+        set(value) = sharedPreferences.edit().putFloat(WINDOW_OPACITY, value * OPACITY_FACTOR).apply()
 }

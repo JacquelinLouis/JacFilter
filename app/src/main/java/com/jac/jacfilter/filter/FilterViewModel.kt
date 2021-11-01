@@ -19,7 +19,7 @@ class FilterViewModel(application: Application) : AndroidViewModel(application) 
 
     companion object {
         /** Opacity factor to multiply to match service value with the UI one. */
-        private const val OPACITY_FACTOR: Int = 100
+        private const val OPACITY_FACTOR = 100F
     }
 
     /** Opacity internal mutable live value. */
@@ -38,7 +38,7 @@ class FilterViewModel(application: Application) : AndroidViewModel(application) 
 
     private val filterServiceListener = object:FilterService.Listener {
         override fun onOpacityChanged() {
-            mutableOpacityLiveData.value = filterService?.opacity?.toInt()?.times(OPACITY_FACTOR)
+            mutableOpacityLiveData.value = filterService?.opacity?.times(OPACITY_FACTOR)?.toInt()
         }
 
         override fun onEnabledChanged() {
@@ -80,7 +80,7 @@ class FilterViewModel(application: Application) : AndroidViewModel(application) 
      * Set filter's opacity.
      * @param value the opacity value to apply.
      */
-    fun setOpacity(value: Int) { filterService?.opacity = (value / OPACITY_FACTOR).toFloat() }
+    fun setOpacity(value: Int) { filterService?.opacity = value.toFloat() / OPACITY_FACTOR }
 
     override fun onCleared() {
         getApplication<Application>().unbindService(filterServiceConnection)

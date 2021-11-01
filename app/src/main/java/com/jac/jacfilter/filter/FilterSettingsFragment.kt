@@ -27,7 +27,6 @@ class FilterSettingsFragment: Fragment(R.layout.fragment_filter_settings) {
     private val opacityObserver =
         Observer<Int> { t ->
             opacityValueTextView.text = t.toString()
-            opacitySelectionSeekBar.progress = t
         }
 
     /** Opacity seekbar change listener. */
@@ -41,7 +40,7 @@ class FilterSettingsFragment: Fragment(R.layout.fragment_filter_settings) {
         }
 
         override fun onStopTrackingTouch(seekBar: SeekBar?) {
-            // Do nothing
+            // seekBar?.progress?.also { filterViewModel.setOpacity(it) }
         }
     }
 
@@ -60,7 +59,7 @@ class FilterSettingsFragment: Fragment(R.layout.fragment_filter_settings) {
         filterViewModel.opacityLiveData.observe(requireActivity(), opacityObserver)
         opacitySelectionSeekBar.setOnSeekBarChangeListener(onSeekBarChangeListener)
 
-        enableOpacityToggleButton.isEnabled = filterViewModel.enabledLiveData.value == true
+        enableOpacityToggleButton.isChecked = filterViewModel.enabledLiveData.value == true
         enableOpacityToggleButton.setOnCheckedChangeListener(onToggleButtonChangeListener)
     }
 
