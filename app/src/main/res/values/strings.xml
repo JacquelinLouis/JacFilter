@@ -12,4 +12,6 @@
         To do so you must allow this application to create this overlay in permissions.
     </string>
     <string name="request_permission_button_text">Request permission</string>
+    <string name="request_permission_fragment_label">Request permission</string>
+    <string name="filter_settings_fragment_label">Filter settings</string>
 </resources>

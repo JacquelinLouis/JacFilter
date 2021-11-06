@@ -20,15 +20,16 @@
         android:text="@string/request_permission_content_text"
         app:layout_constraintTop_toBottomOf="@id/fragment_request_permission_title_text_view"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <Button
         android:id="@+id/fragment_request_permission_button_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/request_permission_button_text"
-        app:layout_constraintTop_toBottomOf="@id/fragment_request_permission_content_text_view"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

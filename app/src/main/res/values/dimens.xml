@@ -2,4 +2,5 @@
 <resources>
     <!-- Main screen margin, avoid elements to stick to the phone's border. -->
     <dimen name="main_margin">10dp</dimen>
+    <dimen name="application_name_text_size">20sp</dimen>
 </resources>

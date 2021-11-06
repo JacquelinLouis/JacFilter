@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/navigation_request_permission_fragment">
+
+    <fragment
+        android:id="@+id/navigation_request_permission_fragment"
+        android:name="com.jac.jacfilter.PermissionRequestFragment"
+        android:label="@string/request_permission_fragment_label"
+        tools:layout="@layout/fragment_request_permission">
+        <action
+            android:id="@+id/action_request_permission_to_filter_settings"
+            app:destination="@id/navigation_filter_settings" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_filter_settings"
+        android:name="com.jac.jacfilter.filter.FilterSettingsFragment"
+        android:label="@string/filter_settings_fragment_label"
+        tools:layout="@layout/fragment_filter_settings">
+    </fragment>
+
+</navigation>
