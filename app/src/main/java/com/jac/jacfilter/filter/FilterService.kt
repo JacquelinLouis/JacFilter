@@ -34,7 +34,7 @@ class FilterService: Service() {
     private lateinit var preferencesManager: PreferencesManager
 
     /** Notification manager. */
-    private val notificationManager = NotificationManager()
+    private val notificationManager = FilterNotificationManager()
 
     /** The window overlay to use over the screen. */
     private var windowOverlay: WindowOverlay? = null
