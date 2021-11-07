@@ -1,11 +1,9 @@
 package com.jac.jacfilter.filter
 
-import android.app.Notification
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.Service
+import android.app.*
 import android.content.Context
 import android.content.Context.NOTIFICATION_SERVICE
+import android.content.Intent
 import com.jac.jacfilter.R
 
 /** Notification's manager. */
@@ -18,6 +16,8 @@ class FilterNotificationManager {
         /** Notification channel id. */
         private val NOTIFICATION_ID =
             (FilterNotificationManager::class.java.name + ".NOTIFICATION_CHANNEL_ID").hashCode()
+        /** Notification request code. Raised on notification click. */
+        val NOTIFICATION_REQUEST_CODE = NOTIFICATION_ID
     }
 
     /**
@@ -56,12 +56,15 @@ class FilterNotificationManager {
      */
     fun enable(service: Service) {
         createNotificationChannel(service)
+        val serviceIntent = Intent(service, FilterService::class.java)
+        val pendingIntent = PendingIntent.getService(service, NOTIFICATION_REQUEST_CODE, serviceIntent, 0)
         val notification: Notification = Notification.Builder(service,
             NOTIFICATION_CHANNEL_ID
         )
             .setContentTitle(service.getText(R.string.notification_title))
             .setContentText(service.getText(R.string.notification_message))
             .setSmallIcon(R.drawable.ic_launcher_foreground)
+            .setContentIntent(pendingIntent)
             .build()
 
         service.startForeground(NOTIFICATION_ID, notification)

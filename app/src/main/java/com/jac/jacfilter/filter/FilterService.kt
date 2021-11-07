@@ -56,6 +56,11 @@ class FilterService: Service() {
         preferencesManager = PreferencesManager(this)
     }
 
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        enabled = false
+        return super.onStartCommand(intent, flags, startId)
+    }
+
     override fun onBind(intent: Intent?): IBinder {
         return localBinder
     }
@@ -81,20 +86,21 @@ class FilterService: Service() {
     var enabled: Boolean get() = windowOverlay != null
         set(value){
             if (value) {
-                windowOverlay?:let { WindowOverlay(
+                windowOverlay?:let {
+                    windowOverlay = WindowOverlay(
                     getSystemService(WINDOW_SERVICE) as WindowManager,
                     inflate(this, R.layout.view_overlay, null) as ConstraintLayout)
                     .apply {
                         notificationManager.enable(this@FilterService)
-                        viewOverlay.alpha = preferencesManager.opacity
+                        viewOverlay.alpha = 1.0F // preferencesManager.opacity
                         windowManager.addView(viewOverlay, viewOverlayParams)
 
-                        listeners.forEach(Listener::onEnabledChanged)
+                         listeners.forEach(Listener::onEnabledChanged)
                     }
                 }
             } else {
                 windowOverlay?.apply {
-                    windowManager.removeViewImmediate(viewOverlay)
+                    windowManager.removeView(viewOverlay)
                     windowOverlay = null
                     notificationManager.disable(this@FilterService)
 

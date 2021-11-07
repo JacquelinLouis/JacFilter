@@ -29,6 +29,11 @@ class FilterSettingsFragment: Fragment(R.layout.fragment_filter_settings) {
             opacityValueTextView.text = t.toString()
         }
 
+    private val enabledObserver =
+        Observer<Boolean> { t ->
+            enableOpacityToggleButton.isChecked = t
+        }
+
     /** Opacity seekbar change listener. */
     private val onSeekBarChangeListener = object: SeekBar.OnSeekBarChangeListener {
         override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
@@ -59,7 +64,7 @@ class FilterSettingsFragment: Fragment(R.layout.fragment_filter_settings) {
         filterViewModel.opacityLiveData.observe(requireActivity(), opacityObserver)
         opacitySelectionSeekBar.setOnSeekBarChangeListener(onSeekBarChangeListener)
 
-        enableOpacityToggleButton.isChecked = filterViewModel.enabledLiveData.value == true
+        filterViewModel.enabledLiveData.observe(requireActivity(), enabledObserver)
         enableOpacityToggleButton.setOnCheckedChangeListener(onToggleButtonChangeListener)
     }
 
