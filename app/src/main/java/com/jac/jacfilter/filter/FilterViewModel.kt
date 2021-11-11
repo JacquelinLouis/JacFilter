@@ -53,8 +53,8 @@ class FilterViewModel(application: Application) : AndroidViewModel(application) 
             filterService = (service as FilterService.LocalBinder).getService().also {
                 it.register(filterServiceListener)
             }
-            setEnabled(application.resources.getBoolean(R.bool.default_enabled))
-            setOpacity(application.resources.getInteger(R.integer.default_opacity))
+            filterServiceListener.onEnabledChanged()
+            filterServiceListener.onOpacityChanged()
         }
 
         override fun onServiceDisconnected(name: ComponentName?) {

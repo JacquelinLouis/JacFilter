@@ -58,6 +58,8 @@ class FilterService: Service() {
 
     override fun onCreate() {
         preferencesManager = PreferencesManager(this)
+        opacity = preferencesManager.opacity
+        enabled = preferencesManager.enabled
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -107,6 +109,7 @@ class FilterService: Service() {
                     notificationManager.disable(this@FilterService)
                 }
             }
+            preferencesManager.enabled = value
             listeners.forEach(Listener::onEnabledChanged)
         }
 }
