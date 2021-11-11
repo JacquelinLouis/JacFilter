@@ -36,6 +36,7 @@
         android:id="@+id/enable_opacity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/main_margin"
         android:text="@string/enable_opacity_text"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
