@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Default opacity activation, mainly for test purpose. -->
-    <bool name="default_opacity_activation">true</bool>
+    <bool name="default_enabled">true</bool>
     <!-- Default screen opacity. -->
     <integer name="default_opacity">50</integer>
 </resources>

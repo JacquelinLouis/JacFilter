@@ -5,7 +5,7 @@
     <string name="channel_name">JacFilter channel</string>
     <string name="channel_description">JacFilter channel to post notifications to</string>
     <string name="notification_title">JacFilter</string>
-    <string name="notification_message">Filter is running</string>
+    <string name="notification_message">Filter is running, click to disable</string>
     <string name="permission_denial_text">Please, allow the application to create an overlay</string>
     <string name="request_permission_title_text">Permission request</string>
     <string name="request_permission_content_text">

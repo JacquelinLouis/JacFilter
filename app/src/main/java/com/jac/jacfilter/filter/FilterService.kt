@@ -2,6 +2,7 @@ package com.jac.jacfilter.filter
 
 import android.app.Service
 import android.content.Intent
+import android.graphics.PixelFormat
 import android.os.Binder
 import android.os.IBinder
 import android.view.View.inflate
@@ -43,7 +44,10 @@ class FilterService: Service() {
     private val viewOverlayParams: WindowManager.LayoutParams by lazy {
         WindowManager.LayoutParams(
             WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
-            WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
+            WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
+                    and WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
+                    and WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+            PixelFormat.TRANSPARENT
         )
     }
 
@@ -88,14 +92,12 @@ class FilterService: Service() {
             if (value) {
                 windowOverlay?:let {
                     windowOverlay = WindowOverlay(
-                    getSystemService(WINDOW_SERVICE) as WindowManager,
-                    inflate(this, R.layout.view_overlay, null) as ConstraintLayout)
-                    .apply {
+                        getSystemService(WINDOW_SERVICE) as WindowManager,
+                        inflate(this, R.layout.view_overlay, null) as ConstraintLayout
+                    ).apply {
                         notificationManager.enable(this@FilterService)
-                        viewOverlay.alpha = 1.0F // preferencesManager.opacity
+                        viewOverlay.alpha = 1F - preferencesManager.opacity
                         windowManager.addView(viewOverlay, viewOverlayParams)
-
-                         listeners.forEach(Listener::onEnabledChanged)
                     }
                 }
             } else {
@@ -103,9 +105,8 @@ class FilterService: Service() {
                     windowManager.removeView(viewOverlay)
                     windowOverlay = null
                     notificationManager.disable(this@FilterService)
-
-                    listeners.forEach(Listener::onEnabledChanged)
                 }
             }
+            listeners.forEach(Listener::onEnabledChanged)
         }
 }

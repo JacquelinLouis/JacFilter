@@ -27,6 +27,7 @@ class FilterSettingsFragment: Fragment(R.layout.fragment_filter_settings) {
     private val opacityObserver =
         Observer<Int> { t ->
             opacityValueTextView.text = t.toString()
+            opacitySelectionSeekBar.progress = t
         }
 
     private val enabledObserver =
